@@ -57,18 +57,4 @@ describe("pull-protocol-buffers", () => {
       )
     })
   })
-
-  describe("duplex", () => {
-    it("should read and send one element", () => {
-      const el = testdata[3]
-      const conn = {
-        source: pull.values(outdata.slice(0)),
-        sink: pull.drain()
-      }
-      const write = protostream.duplex(conn, testmsg, data => {
-        assert.deepEqual(data, el, "invalid data decoded")
-        write(el)
-      })
-    })
-  })
 })
