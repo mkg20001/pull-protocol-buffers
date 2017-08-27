@@ -1,0 +1,30 @@
+{
+  "name": "pull-protocol-buffers",
+  "version": "0.0.1",
+  "description": "Protocol Buffers length-prefixed pull-stream encoder/decoder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "protocol-buffers",
+    "protocol",
+    "buffers",
+    "pull-stream",
+    "pull",
+    "stream",
+    "length-prefixed",
+    "length",
+    "prefixed",
+    "encoder",
+    "decoder"
+  ],
+  "author": "Maciej Krüger <mkg20001@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "protocol-buffers": "^3.2.1",
+    "pull-length-prefixed": "^1.3.0",
+    "pull-pushable": "^2.1.1",
+    "pull-stream": "^3.6.0"
+  }
+}
