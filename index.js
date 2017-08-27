@@ -17,3 +17,5 @@ module.exports.decode = (proto) => {
     pro.decode(proto)
   )
 }
+
+module.exports.pull = pro

@@ -5,7 +5,8 @@
 Protocol Buffers length-prefixed pull-stream encoder/decoder
 
 # API
-  - `ppb.encode(proto)`
+
+-   `ppb.encode(proto)`
 
     Encodes messages that come in
 
@@ -13,10 +14,16 @@ Protocol Buffers length-prefixed pull-stream encoder/decoder
 
     returns: A length-prefixed duplex
 
-  - `ppb.decode(proto)`
+-   `ppb.decode(proto)`
 
     Decodes protocol-buffers that come in
 
     `proto`: The Protocol buffers message
 
     returns: A length-prefixed duplex
+
+-   `.pull`
+
+    The same api as above just without length-prefixing.
+
+    Not network safe. Useful for encoding/decoding single messages.
