@@ -19,12 +19,12 @@ module.exports.decode = (proto) => {
   )
 }
 
-module.exports.duplex = (conn, proto) => {
-  let handler = () => {}
+module.exports.duplex = (conn, proto, handler) => {
   pull(
     conn,
     module.exports.decode(proto),
-    pull.drain(msg => handler(msg))
+    pull.map(msg => handler(msg)),
+    pull.drain()
   )
   const p = new Pushable()
   pull(
@@ -32,8 +32,5 @@ module.exports.duplex = (conn, proto) => {
     module.exports.encode(proto),
     conn
   )
-  return {
-    read: f => handler = f,
-    write: data => p.push(data)
-  }
+  return data => p.push(data)
 }

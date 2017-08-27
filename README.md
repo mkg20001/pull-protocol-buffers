@@ -18,7 +18,7 @@ Protocol Buffers length-prefixed pull-stream encoder/decoder
 
     returns: A length-prefixed duplex
 
-  - `ppb.duplex(duplex, proto)`
+  - `ppb.duplex(duplex, proto, handler)`
 
     Creates an easy to use protocol-buffers client
 
@@ -26,14 +26,10 @@ Protocol Buffers length-prefixed pull-stream encoder/decoder
 
     `proto`: The Protocol buffers message
 
-    returns: An object with 2 functions
+    `handler(data)`: A function that is called whenever a message is encoded
 
-      - `.read(fn)`
+    returns: A write function
 
-        `fn(data)`: A function that is called whenever a message is encoded
-
-        **NOTE: Must be called sync after creation**
-
-      - `.write(data)`
+      - `write(data)`
 
         `data`: JSON data to encode

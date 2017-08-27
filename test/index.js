@@ -1,8 +1,6 @@
 "use strict"
 
-const sinon = require("sinon")
 const chai = require("chai")
-chai.use(require("sinon-chai"))
 const should = chai.should()
 const assert = require("assert")
 
@@ -21,14 +19,56 @@ const testdata = ["hello", "world", "randomnonsense⅜£¤⅜£ŁŦŁŊẞ€Ŋ"
 
 describe("pull-protocol-buffers", () => {
   describe("lp", () => {
-    pull(
-      pull.values(testdata.slice(1)),
-      protostream.encode(testmsg),
-      protostream.decode(testmsg),
-      pull.collect((err, data) => {
-        should.not.exist(err)
-        data.should.equal(testdata)
+    it("should decode and encode", () => {
+      pull(
+        pull.values(testdata.slice(0)),
+        protostream.encode(testmsg),
+        protostream.decode(testmsg),
+        pull.collect((err, data) => {
+          should.not.exist(err)
+          assert.deepEqual(data, testdata, "invalid data returned")
+        })
+      )
+    })
+  })
+
+  const outdata = [testmsg.encode(testdata[3])]
+
+  describe("single", () => {
+    it("should encode a single element", () => {
+      pull(
+        pull.values(testdata.slice(3)),
+        protostream_pull.encode(testmsg),
+        pull.collect((err, data) => {
+          should.not.exist(err)
+          assert.deepEqual(data, outdata, "invalid data returned")
+        })
+      )
+    })
+
+    it("should decode a single element", () => {
+      pull(
+        pull.values(outdata.slice(0)),
+        protostream_pull.decode(testmsg),
+        pull.collect((err, data) => {
+          should.not.exist(err)
+          assert.deepEqual(data, testdata.slice(3), "invalid data returned")
+        })
+      )
+    })
+  })
+
+  describe("duplex", () => {
+    it("should read and send one element", () => {
+      const el = testdata[3]
+      const conn = {
+        source: pull.values(outdata.slice(0)),
+        sink: pull.drain()
+      }
+      const write = protostream.duplex(conn, testmsg, data => {
+        assert.deepEqual(data, el, "invalid data decoded")
+        write(el)
       })
-    )
+    })
   })
 })
