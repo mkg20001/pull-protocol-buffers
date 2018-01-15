@@ -1,8 +1,8 @@
-"use strict"
+'use strict'
 
-const lp = require("pull-length-prefixed")
-const pull = require("pull-stream")
-const pro = require("./pull")
+const lp = require('pull-length-prefixed')
+const pull = require('pull-stream')
+const pro = require('./pull')
 
 module.exports.encode = (proto) => {
   return pull(

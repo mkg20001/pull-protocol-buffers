@@ -1,6 +1,6 @@
-"use strict"
+'use strict'
 
-const pull = require("pull-stream")
+const pull = require('pull-stream')
 
 module.exports.encode = (proto) => {
   return pull.map(msg => proto.encode(msg))
