@@ -1,6 +1,6 @@
 {
   "name": "pull-protocol-buffers",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Protocol Buffers length-prefixed pull-stream encoder/decoder",
   "main": "index.js",
   "scripts": {
