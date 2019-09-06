@@ -25,14 +25,14 @@
   "author": "Maciej Krüger <mkg20001@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "pull-length-prefixed": "^1.3.0",
-    "pull-stream": "^3.6.1"
+    "pull-length-prefixed": "^1.3.3",
+    "pull-stream": "^3.6.14"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^4.1.0",
-    "nyc": "^11.4.1",
-    "protocol-buffers": "^3.2.1"
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "protocol-buffers": "^4.1.0"
   },
   "repository": {
     "type": "git",
